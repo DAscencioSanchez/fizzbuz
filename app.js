@@ -2,7 +2,10 @@ const fs = require("fs");
 
 // Part 1 Read json file ===========================
 const rawdata = fs.readFileSync("explorers.json");
-const explorers = JSON.parse(rawdata);
+const explorers = JSON.parse(rawdata); //lista de explorers del archivo json
+
+console.log("hey I'm here!!")
+//console.log(explorers)
 
 // Part 2: Get the quantity of explorers names in node
 const explorersInNode = explorers.filter((explorer) => explorer.mission == "node");
@@ -31,6 +34,8 @@ const assignFizzTrick = function(explorer){
 };
 
 const explorersInNodeAndFizzTrick = explorersInNode.map((explorer) => assignFizzTrick(explorer));
+
+//console.log(explorersInNodeAndFizzTrick)
 
 // Part 6: Get a new list of explorers in node if the score number is divisible by 5, we need to set a new property called trick and set the value BUZZ, if not this value should be just the score
 //
@@ -61,3 +66,21 @@ const assignFizzBuzzTrick = function(explorer){
 const explorersInNodeAndFizzBuzzTrick = explorersInNode.map((explorer) => assignFizzBuzzTrick(explorer));
 
 // Part 8: Get a list of the explorers in node, if the score is divisible by 5 and 3, set the property trick and the value FIZZBUZZ, if is just divisible by 5 set the property trcik and the value BUZZ, if is just divisible by 3 set the property trick and the value FIZZ, otherwise set the property trick and the score value. TODO
+
+const assignFizzBuzzTrickAll = function(explorer){
+    if(explorer.score%5 === 0 && explorer.score%3 === 0){
+        explorer.trick = "FIZZBUZZ";
+        return explorer;
+    }else if(explorer.score%5 === 0) {
+        explorer.trick = "BUZZ";
+        return explorer;
+    }else if(explorer.score%3 === 0){
+        explorer.trick = "FIZZ";
+        return explorer;
+    } else {
+        explorer.trick = explorer.score;
+        return explorer;
+    }
+};
+
+const explorersInNodeAndFizzBuzzTrickAll = explorersInNode.map((explorer) => assignFizzBuzzTrickAll(explorer));
